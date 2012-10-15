@@ -32,7 +32,7 @@ void android_main(struct android_app* state) {
 	 ANativeActivity* pActivity = state->activity;
 	 JNIEnv* env = pActivity->env;
 
-	// pActivity->vm->AttachCurrentThread(&env, NULL);
+	 pActivity->vm->AttachCurrentThread(&env, NULL);
 
 
 
@@ -56,7 +56,7 @@ void android_main(struct android_app* state) {
 	 env->DeleteLocalRef(str);
 	 // 获取ANativeActivity，这个类其实也是调用JAVA的类，这里通过NDK入口的传入参数获取。作用是窗口Activity的
 
-	// pActivity->vm->DetachCurrentThread();
+	 pActivity->vm->DetachCurrentThread();
 }
 
 

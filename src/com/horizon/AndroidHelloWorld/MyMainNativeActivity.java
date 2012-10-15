@@ -1,11 +1,13 @@
 package com.horizon.AndroidHelloWorld;
 
 import com.horizon.AndroidHelloWorld.R;
+import com.horizon.AndroidHelloWorld.gcm.GCMIntentService;
 
 import android.os.Bundle;
 import android.os.Looper;
 import android.app.Activity;
 import android.app.NativeActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
@@ -35,25 +37,21 @@ public class MyMainNativeActivity extends NativeActivity {
         Intent registrationIntent = new Intent(REQUEST_REGISTRATION_INTENT);
         registrationIntent.setPackage(GSF_PACKAGE);
 
-        final Activity pInstance = this;
-        new Thread(){
-        	@Override
-			public void run(){
-        		 GCMRegistrar.checkDevice(pInstance);
-        	     GCMRegistrar.checkManifest(pInstance);
-        	     final String regId = GCMRegistrar.getRegistrationId(pInstance);
-        	        if (regId.equals("")) {
-        	        	  Log.v("gcm", "start register");
-        	          GCMRegistrar.register(pInstance, GCMIntentService.GCM_SENDER_ID);
-        	        } else {
-        	          Log.v("gcm", "Already registered");
-        	          Log.d("gcm", "regId:" + regId);
-        	        }
-        		
-        	}
+        final Context pInstance = getApplicationContext();
    
+        GCMRegistrar.checkDevice(pInstance);
+        GCMRegistrar.checkManifest(pInstance);
+        final String regId = GCMRegistrar.getRegistrationId(pInstance);
+        if (regId.equals("")) {
+      	  Log.v("gcm", "start register");
+      	  GCMRegistrar.register(pInstance, GCMIntentService.GCM_SENDER_ID);
+        } else {
+        	Log.v("gcm", "Already registered");
+        	Log.d("gcm", "regId:" + regId);
+        }
         	
-        }.start();
+        		
+
        
        
     }

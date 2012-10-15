@@ -2,9 +2,9 @@ package com.horizon.AndroidHelloWorld;
 
 import com.google.android.gcm.GCMRegistrar;
 import com.horizon.AndroidHelloWorld.R;
+import com.horizon.AndroidHelloWorld.gcm.GCMIntentService;
 
 import android.os.Bundle;
-import android.os.Looper;
 import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;

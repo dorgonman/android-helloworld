@@ -1,4 +1,4 @@
-package com.horizon.AndroidHelloWorld;
+package com.horizon.AndroidHelloWorld.gcm;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
+import com.horizon.AndroidHelloWorld.MainActivity;
+import com.horizon.AndroidHelloWorld.R;
 
 public class GCMIntentService extends GCMBaseIntentService{
 	
@@ -66,7 +68,7 @@ public class GCMIntentService extends GCMBaseIntentService{
 		 notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
 	
 		 mNotificationManager.notify(1, notification);
-		 Log.d("gcm", "gcm message:" + contentText.toString());
+		 Log.d("gcm", "gcm message:" + contentText.toString() + context.getClass());
 
 		
 	}
